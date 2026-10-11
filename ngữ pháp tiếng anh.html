@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thực hành 4 Thì Hiện Tại - Workbook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fdfaf6; }
+        .chart-container { position: relative; width: 100%; max-width: 300px; margin-left: auto; margin-right: auto; height: 300px; }
+        .exercise-tab.active { border-bottom: 3px solid #14b8a6; color: #14b8a6; }
+        .correct { background-color: #d1fae5; border-color: #10b981; }
+        .incorrect { background-color: #fee2e2; border-color: #ef4444; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="text-slate-800 leading-relaxed">
+
+    <div class="max-w-5xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-teal-700 mb-4">Chinh Phục 4 Thì Hiện Tại</h1>
+            <p class="text-slate-600 max-w-2xl mx-auto">
+                Chào mừng bạn đến với ứng dụng thực hành ngữ pháp. Tại đây, bạn sẽ được thử thách với các dạng bài tập thực tế 
+                để phân biệt và sử dụng nhuần nhuyễn Present Simple, Continuous, Perfect và Perfect Continuous.
+            </p>
+        </header>
+
+        <!-- Grammar Quick Review Section -->
+        <section class="mb-12 bg-white rounded-2xl p-6 shadow-sm border border-stone-100">
+            <h2 class="text-xl font-bold mb-6 flex items-center text-stone-700">
+                <span class="mr-2">💡</span> Tóm tắt nhanh kiến thức
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="p-4 rounded-xl border border-teal-100 bg-teal-50/30 hover:bg-teal-50 transition-colors">
+                    <h3 class="font-bold text-teal-800 text-sm uppercase">Hiện tại Đơn</h3>
+                    <p class="text-xs text-slate-500 mt-1">Sự thật, thói quen</p>
+                    <div class="mt-2 text-sm font-mono font-semibold">S + V(s/es)</div>
+                </div>
+                <div class="p-4 rounded-xl border border-blue-100 bg-blue-50/30 hover:bg-blue-50 transition-colors">
+                    <h3 class="font-bold text-blue-800 text-sm uppercase">Hiện tại Tiếp diễn</h3>
+                    <p class="text-xs text-slate-500 mt-1">Hành động lúc nói</p>
+                    <div class="mt-2 text-sm font-mono font-semibold">S + am/is/are + V-ing</div>
+                </div>
+                <div class="p-4 rounded-xl border border-amber-100 bg-amber-50/30 hover:bg-amber-50 transition-colors">
+                    <h3 class="font-bold text-amber-800 text-sm uppercase">Hiện tại Hoàn thành</h3>
+                    <p class="text-xs text-slate-500 mt-1">Kết quả, trải nghiệm</p>
+                    <div class="mt-2 text-sm font-mono font-semibold">S + have/has + PII</div>
+                </div>
+                <div class="p-4 rounded-xl border border-rose-100 bg-rose-50/30 hover:bg-rose-50 transition-colors">
+                    <h3 class="font-bold text-rose-800 text-sm uppercase">HT Hoàn thành Tiếp diễn</h3>
+                    <p class="text-xs text-slate-500 mt-1">Sự kéo dài, liên tục</p>
+                    <div class="mt-2 text-sm font-mono font-semibold text-[10px]">S + have/has + been + V-ing</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Exercise Area -->
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left: Exercises -->
+            <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden">
+                <!-- Tabs -->
+                <nav class="flex bg-stone-50 border-b border-stone-100 overflow-x-auto">
+                    <button onclick="switchTab(1)" id="tab-1" class="exercise-tab active px-6 py-4 font-semibold text-sm transition-all whitespace-nowrap">Bài 1: HTĐ & HTTD</button>
+                    <button onclick="switchTab(2)" id="tab-2" class="exercise-tab px-6 py-4 font-semibold text-sm transition-all whitespace-nowrap text-slate-500">Bài 2: Trắc nghiệm HTHT</button>
+                    <button onclick="switchTab(3)" id="tab-3" class="exercise-tab px-6 py-4 font-semibold text-sm transition-all whitespace-nowrap text-slate-500">Bài 3: Điền từ vào bảng</button>
+                    <button onclick="switchTab(4)" id="tab-4" class="exercise-tab px-6 py-4 font-semibold text-sm transition-all whitespace-nowrap text-slate-500">Bài 4: Viết lại câu</button>
+                </nav>
+
+                <div class="p-8">
+                    <!-- Exercise 1 -->
+                    <div id="content-1" class="tab-content space-y-6">
+                        <div class="bg-teal-50 p-4 rounded-lg mb-4 text-sm text-teal-800">
+                            <strong>Yêu cầu:</strong> Chia động từ trong ngoặc ở thì Hiện tại đơn hoặc Hiện tại tiếp diễn.
+                        </div>
+                        <div class="space-y-4" id="ex1-list">
+                            <!-- JS will inject questions -->
+                        </div>
+                    </div>
+
+                    <!-- Exercise 2 -->
+                    <div id="content-2" class="tab-content hidden space-y-6">
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4 text-sm text-blue-800">
+                            <strong>Yêu cầu:</strong> Chọn đáp án chính xác nhất giữa Hiện tại hoàn thành và Hiện tại hoàn thành tiếp diễn.
+                        </div>
+                        <div class="space-y-6" id="ex2-list">
+                            <!-- JS will inject questions -->
+                        </div>
+                    </div>
+
+                    <!-- Exercise 3 -->
+                    <div id="content-3" class="tab-content hidden space-y-6">
+                        <div class="bg-amber-50 p-4 rounded-lg mb-4 text-sm text-amber-800">
+                            <strong>Yêu cầu:</strong> Điền động từ từ bảng vào chỗ trống và chia ở thì phù hợp.
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-white border border-amber-200 rounded text-xs font-mono">see</span>
+                                <span class="px-2 py-1 bg-white border border-amber-200 rounded text-xs font-mono">cost</span>
+                                <span class="px-2 py-1 bg-white border border-amber-200 rounded text-xs font-mono">write</span>
+                                <span class="px-2 py-1 bg-white border border-amber-200 rounded text-xs font-mono">think</span>
+                                <span class="px-2 py-1 bg-white border border-amber-200 rounded text-xs font-mono">travel</span>
+                                <span class="px-2 py-1 bg-white border border-amber-200 rounded text-xs font-mono">belong</span>
+                                <span class="px-2 py-1 bg-white border border-amber-200 rounded text-xs font-mono">have</span>
+                                <span class="px-2 py-1 bg-white border border-amber-200 rounded text-xs font-mono">wait</span>
+                                <span class="px-2 py-1 bg-white border border-amber-200 rounded text-xs font-mono">smell</span>
+                                <span class="px-2 py-1 bg-white border border-amber-200 rounded text-xs font-mono">be</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4" id="ex3-list">
+                            <!-- JS will inject questions -->
+                        </div>
+                    </div>
+
+                    <!-- Exercise 4 -->
+                    <div id="content-4" class="tab-content hidden space-y-6">
+                        <div class="bg-rose-50 p-4 rounded-lg mb-4 text-sm text-rose-800">
+                            <strong>Yêu cầu:</strong> Viết lại câu hoàn chỉnh dựa trên gợi ý hoặc chuyển đổi giữa các thì.
+                        </div>
+                        <div class="space-y-4" id="ex4-list">
+                            <!-- JS will inject questions -->
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-6 border-t border-stone-100 flex justify-between items-center">
+                        <button onclick="checkAnswers()" class="px-8 py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-all shadow-md">
+                            Kiểm tra kết quả
+                        </button>
+                        <button onclick="resetApp()" class="text-slate-400 hover:text-rose-500 text-sm font-medium transition-all">
+                            Làm lại từ đầu
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Stats & Feedback -->
+            <div class="space-y-6">
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-100">
+                    <h3 class="text-lg font-bold mb-4 text-stone-700">Tiến trình của bạn</h3>
+                    <div class="chart-container">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <p id="scoreText" class="text-2xl font-bold text-teal-600">0/40</p>
+                        <p class="text-xs text-slate-400">câu trả lời đúng</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 rounded-2xl p-6 shadow-lg text-white">
+                    <h3 class="text-lg font-bold mb-3 flex items-center">
+                        <span class="mr-2">💡</span> Gợi ý học tập
+                    </h3>
+                    <ul class="text-sm space-y-3 text-slate-300">
+                        <li class="flex items-start">
+                            <span class="text-teal-400 mr-2">•</span>
+                            "Listen!", "Look!", "At the moment" luôn báo hiệu thì Hiện tại tiếp diễn.
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal-400 mr-2">•</span>
+                            "Since" + mốc thời gian, "For" + khoảng thời gian là đặc trưng của HT hoàn thành.
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal-400 mr-2">•</span>
+                            Hãy dùng HTHT tiếp diễn khi bạn muốn nhấn mạnh sự "vất vả" hoặc "thời gian trôi đi" của hành động.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-16 text-center text-slate-400 text-sm border-t border-stone-200 pt-8 pb-12">
+            © 2024 Interactive Grammar Learning - Chúc bạn học tốt!
+        </footer>
+    </div>
+
+    <script>
+        const data = {
+            ex1: [
+                { q: "Hurry up! Everyone (wait) _______ for you.", a: "is waiting", hint: "Hành động đang diễn ra lúc nói." },
+                { q: "The moon (go) _______ around the Earth.", a: "goes", hint: "Sự thật hiển nhiên." },
+                { q: "I (not/use) _______ my computer at the moment.", a: "am not using", hint: "'At the moment' -> Tiếp diễn." },
+                { q: "He (usually/play) _______ tennis on Saturdays.", a: "usually plays", hint: "Thói quen định kỳ." },
+                { q: "Water (freeze) _______ at 0 degrees Celsius.", a: "freezes", hint: "Sự thật khoa học." },
+                { q: "Look! The bus (come) _______.", a: "is coming", hint: "'Look!' báo hiệu sự việc đang tới." },
+                { q: "My brother (want) _______ to be a doctor.", a: "wants", hint: "'Want' là động từ trạng thái." },
+                { q: "Why (you/laugh) _______? Is there something funny?", a: "are you laughing", hint: "Hỏi về hành động đang diễn ra." },
+                { q: "They (stay) _______ with their cousins this week.", a: "are staying", hint: "Hành động mang tính tạm thời." },
+                { q: "She (never/arrive) _______ on time.", a: "never arrives", hint: "Tần suất/Thói quen." }
+            ],
+            ex2: [
+                { q: "I _______ for you for two hours! Where have you been?", options: ["have waited", "am waiting", "have been waiting", "wait"], a: "have been waiting", hint: "Nhấn mạnh quá trình chờ đợi kéo dài." },
+                { q: "She _______ that novel twice already.", options: ["reads", "is reading", "has been reading", "has read"], a: "has read", hint: "Nhấn mạnh số lần hoàn thành." },
+                { q: "We _______ this house since last year.", options: ["have owned", "have been owning", "own", "are owning"], a: "have owned", hint: "'Own' không dùng ở thì tiếp diễn." },
+                { q: "Your eyes are red. _______ you _______?", options: ["Have/cried", "Do/cry", "Have/been crying", "Are/crying"], a: "Have/been crying", hint: "Hệ quả hiện tại của một hành động vừa kéo dài." },
+                { q: "I _______ my phone. Can you help me find it?", options: ["lose", "have lost", "have been losing", "lost"], a: "has lost", hint: "Kết quả hiện tại (mất rồi)." },
+                { q: "They _______ in the garden all morning.", options: ["work", "are working", "have worked", "have been working"], a: "have been working", hint: "Tính liên tục suốt cả buổi sáng." },
+                { q: "How long _______ you _______ English?", options: ["have/learned", "do/learn", "have/been learning", "are/learning"], a: "have/been learning", hint: "Hỏi về độ dài thời gian học." },
+                { q: "He _______ ten cups of coffee today.", options: ["drinks", "is drinking", "has drunk", "has been drinking"], a: "has drunk", hint: "Số lượng cụ thể (10 cốc)." },
+                { q: "I _______ such a big dog before.", options: ["never saw", "have never seen", "never see", "am never seeing"], a: "have never seen", hint: "Trải nghiệm từ trước đến nay." },
+                { q: "The kids _______ video games since 8 AM.", options: ["play", "have played", "have been playing", "played"], a: "have been playing", hint: "Nhấn mạnh tính liên tục từ mốc thời gian." }
+            ],
+            ex3: [
+                { q: "Listen! It _______ a beautiful song.", a: "is", word: "be" },
+                { q: "The soup _______ strange. Don't eat it.", a: "smells", word: "smell" },
+                { q: "I _______ about moving to another city lately.", a: "have been thinking", word: "think" },
+                { q: "This luxury car _______ to my boss.", a: "belongs", word: "belong" },
+                { q: "We _______ to Europe three times this year.", a: "have traveled", word: "travel" },
+                { q: "He _______ for the bus for 30 minutes now.", a: "has been waiting", word: "wait" },
+                { q: "The new iPhone _______ a fortune.", a: "costs", word: "cost" },
+                { q: "I _______ what you mean now.", a: "see", word: "see" },
+                { q: "She _______ five reports since this morning.", a: "has written", word: "write" },
+                { q: "They _______ happy since they moved here.", a: "have been", word: "be" }
+            ],
+            ex4: [
+                { q: "I started playing piano 3 years ago. (Use 'for')", a: "I have played / been playing piano for 3 years", placeholder: "I have..." },
+                { q: "It's the first time I've ever tasted this dish.", a: "I have never tasted this dish before", placeholder: "I have..." },
+                { q: "When did you begin working here? (Use 'How long')", a: "How long have you been working here?", placeholder: "How long..." },
+                { q: "She last visited us in 2022.", a: "She hasn't visited us since 2022", placeholder: "She hasn't..." },
+                { q: "It is / 10 years / since / we / move / here.", a: "It has been 10 years since we moved here", placeholder: "It..." },
+                { q: "Wait! / Someone / follow / us.", a: "Wait! Someone is following us", placeholder: "Wait!..." },
+                { q: "My cat / usually / sleep / on the sofa.", a: "My cat usually sleeps on the sofa", placeholder: "My cat..." },
+                { q: "He / write / books / for years. (Emphasis on process)", a: "He has been writing books for years", placeholder: "He..." },
+                { q: "I / see / that man / before.", a: "I have seen that man before", placeholder: "I..." },
+                { q: "The rain / not / stop / yet.", a: "The rain hasn't stopped yet", placeholder: "The rain..." }
+            ]
+        };
+
+        let chart;
+        let userStats = { correct: 0, total: 40 };
+
+        function initApp() {
+            renderEx1();
+            renderEx2();
+            renderEx3();
+            renderEx4();
+            initChart();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('ex1-list');
+            data.ex1.forEach((item, index) => {
+                container.innerHTML += `
+                    <div class="flex flex-col space-y-1">
+                        <label class="text-sm text-slate-600">${index + 1}. ${item.q}</label>
+                        <input type="text" id="ex1-${index}" class="px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-teal-500 outline-none text-sm transition-all" placeholder="Nhập câu trả lời...">
+                        <div id="ex1-fb-${index}" class="hidden text-[10px] mt-1 font-medium italic"></div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('ex2-list');
+            data.ex2.forEach((item, index) => {
+                let optionsHtml = item.options.map(opt => `
+                    <label class="flex items-center space-x-2 p-2 border border-slate-100 rounded-lg cursor-pointer hover:bg-slate-50 transition-all">
+                        <input type="radio" name="ex2-${index}" value="${opt}" class="text-blue-600 focus:ring-blue-500">
+                        <span class="text-sm">${opt}</span>
+                    </label>
+                `).join('');
+                
+                container.innerHTML += `
+                    <div class="space-y-2">
+                        <p class="text-sm font-medium text-slate-700">${index + 1}. ${item.q}</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">${optionsHtml}</div>
+                        <div id="ex2-fb-${index}" class="hidden text-[10px] mt-1 font-medium italic"></div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderEx3() {
+            const container = document.getElementById('ex3-list');
+            data.ex3.forEach((item, index) => {
+                container.innerHTML += `
+                    <div class="flex flex-col space-y-1">
+                        <label class="text-sm text-slate-600">${index + 1}. ${item.q.replace('_______', `[${item.word}] _______`)}</label>
+                        <input type="text" id="ex3-${index}" class="px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none text-sm transition-all" placeholder="Nhập đáp án...">
+                        <div id="ex3-fb-${index}" class="hidden text-[10px] mt-1 font-medium italic"></div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderEx4() {
+            const container = document.getElementById('ex4-list');
+            data.ex4.forEach((item, index) => {
+                container.innerHTML += `
+                    <div class="flex flex-col space-y-1">
+                        <label class="text-sm text-slate-600">${index + 1}. ${item.q}</label>
+                        <input type="text" id="ex4-${index}" class="px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none text-sm transition-all" placeholder="${item.placeholder}">
+                        <div id="ex4-fb-${index}" class="hidden text-[10px] mt-1 font-medium italic"></div>
+                    </div>
+                `;
+            });
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.exercise-tab').forEach(t => {
+                t.classList.remove('active', 'text-teal-600');
+                t.classList.add('text-slate-500');
+            });
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            document.getElementById(`tab-${tabId}`).classList.remove('text-slate-500');
+            document.getElementById(`content-${tabId}`).classList.remove('hidden');
+        }
+
+        function checkAnswers() {
+            let correctCount = 0;
+
+            // Check Ex 1
+            data.ex1.forEach((item, index) => {
+                const val = document.getElementById(`ex1-${index}`).value.toLowerCase().trim();
+                const feedback = document.getElementById(`ex1-fb-${index}`);
+                feedback.classList.remove('hidden');
+                if (val === item.a.toLowerCase()) {
+                    correctCount++;
+                    document.getElementById(`ex1-${index}`).className = "px-3 py-2 border rounded-lg text-sm correct";
+                    feedback.innerText = "Chính xác!";
+                    feedback.className = "text-[10px] mt-1 font-medium text-teal-600";
+                } else {
+                    document.getElementById(`ex1-${index}`).className = "px-3 py-2 border rounded-lg text-sm incorrect";
+                    feedback.innerText = `Sai rồi. Đáp án: ${item.a}. (${item.hint})`;
+                    feedback.className = "text-[10px] mt-1 font-medium text-rose-500";
+                }
+            });
+
+            // Check Ex 2
+            data.ex2.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="ex2-${index}"]:checked`);
+                const feedback = document.getElementById(`ex2-fb-${index}`);
+                feedback.classList.remove('hidden');
+                if (selected && selected.value === item.a) {
+                    correctCount++;
+                    feedback.innerText = "Chính xác!";
+                    feedback.className = "text-[10px] mt-1 font-medium text-teal-600";
+                } else {
+                    feedback.innerText = `Sai rồi. Đáp án: ${item.a}. (${item.hint})`;
+                    feedback.className = "text-[10px] mt-1 font-medium text-rose-500";
+                }
+            });
+
+            // Check Ex 3
+            data.ex3.forEach((item, index) => {
+                const val = document.getElementById(`ex3-${index}`).value.toLowerCase().trim();
+                const feedback = document.getElementById(`ex3-fb-${index}`);
+                feedback.classList.remove('hidden');
+                if (val === item.a.toLowerCase() || (item.a.includes('/') && item.a.toLowerCase().split('/').some(s => s.trim() === val))) {
+                    correctCount++;
+                    document.getElementById(`ex3-${index}`).className = "px-3 py-2 border rounded-lg text-sm correct";
+                    feedback.innerText = "Chính xác!";
+                    feedback.className = "text-[10px] mt-1 font-medium text-teal-600";
+                } else {
+                    document.getElementById(`ex3-${index}`).className = "px-3 py-2 border rounded-lg text-sm incorrect";
+                    feedback.innerText = `Sai rồi. Đáp án: ${item.a}`;
+                    feedback.className = "text-[10px] mt-1 font-medium text-rose-500";
+                }
+            });
+
+            // Check Ex 4
+            data.ex4.forEach((item, index) => {
+                const val = document.getElementById(`ex4-${index}`).value.toLowerCase().trim();
+                const feedback = document.getElementById(`ex4-fb-${index}`);
+                feedback.classList.remove('hidden');
+                
+                // Flexible matching for Ex 4
+                const simplifiedAns = item.a.toLowerCase().replace(/[.,?!]/g, "").trim();
+                const simplifiedUser = val.replace(/[.,?!]/g, "").trim();
+
+                if (simplifiedUser === simplifiedAns || (item.a.includes('/') && simplifiedAns.split('/').some(s => s.trim() === simplifiedUser))) {
+                    correctCount++;
+                    document.getElementById(`ex4-${index}`).className = "px-3 py-2 border rounded-lg text-sm correct";
+                    feedback.innerText = "Chính xác!";
+                    feedback.className = "text-[10px] mt-1 font-medium text-teal-600";
+                } else {
+                    document.getElementById(`ex4-${index}`).className = "px-3 py-2 border rounded-lg text-sm incorrect";
+                    feedback.innerText = `Gợi ý đáp án: ${item.a}`;
+                    feedback.className = "text-[10px] mt-1 font-medium text-rose-500";
+                }
+            });
+
+            updateStats(correctCount);
+        }
+
+        function updateStats(correct) {
+            userStats.correct = correct;
+            document.getElementById('scoreText').innerText = `${correct}/40`;
+            
+            chart.data.datasets[0].data = [correct, 40 - correct];
+            chart.update();
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Đúng', 'Chưa đúng'],
+                    datasets: [{
+                        data: [0, 40],
+                        backgroundColor: ['#14b8a6', '#f1f5f9'],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    cutout: '80%',
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        function resetApp() {
+            location.reload();
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
